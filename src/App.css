@@ -4,3 +4,10 @@
 header{
     z-index: 10001 !important;
 }
+
+.subtitle{
+    @apply text-button uppercase  font-medium text-lg
+}
+.title{
+    @apply text-4xl md:text-5xl font-bold my-2 md:leading-snug leading-snug 
+}
