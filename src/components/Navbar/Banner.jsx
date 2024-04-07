@@ -6,17 +6,9 @@ import noodles from '/public/noodles.png';
 const Banner = () => {
     return (
         <div className='section-container  bg-gradient-to-r from-[#FAFAFA] from-0% to-[#FCFCFC] to-100%'>
-           <div className='py-24 flex flex-col md:flex-row justify-between items-center gap-8'>
-            {/* text */}
-              <div className='md:w-1/2 space-y-7 px-4'>
-                <p className='md:text-5xl text-4xl font-bold md:leading-snug leading-snug'>Dive into Delights of Delectable Food with <span className='text-button-hvr md:text-6xl'>Sodium Cafe</span></p>
-
-                <button className="mt-6 btn
-    rounded-full px-8 flex text-center text-white font-bold
-    bg-button hover:bg-button-hvr"> Order Now <BiArrowToRight className='text-2xl'/></button>
-              </div>
-              {/* image */}
-              <div className='md:w-1/2 '>
+           <div className='py-24 flex flex-col md:flex-row-reverse justify-between items-center gap-8'>
+             {/* image */}
+             <div className='md:w-1/2 '>
                <img src={banner} alt="" />
 
                <div className='flex gap-6 flex-col md:flex-row items-center justify-around -mt-20'>
@@ -51,6 +43,15 @@ const Banner = () => {
                    </div>
                </div>
               </div>
+            {/* text */}
+              <div className='md:w-1/2 space-y-7 px-4'>
+                <p className='md:text-5xl text-4xl font-bold md:leading-snug leading-snug'>Dive into Delights of Delectable Food with <span className='text-button-hvr md:text-6xl'>Sodium Cafe</span></p>
+
+                <button className="mt-6 btn
+    rounded-full px-8 flex text-center text-white font-bold
+    bg-button hover:bg-button-hvr"> Order Now <BiArrowToRight className='text-2xl'/></button>
+              </div>
+             
            </div>
         </div>
     );
