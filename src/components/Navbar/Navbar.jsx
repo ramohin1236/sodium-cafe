@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BiSolidPhoneCall } from 'react-icons/bi';
+import { Link, NavLink } from 'react-router-dom';
 
 const Navbar = () => {
 
@@ -25,16 +26,23 @@ const Navbar = () => {
     },[])
 
     const navItems =<>
-     <li className='mx-4'><a>Home</a></li>
+     <li className='mx-4'><NavLink
+  to="/"
+  className={({ isActive, isPending }) =>
+    isPending ? "text-black" : isActive ? "bg-button text-white font-bold hover:text-black" : ""
+  }
+>
+Home
+</NavLink></li>
       <li className='mx-4'>
-        <details>
-          <summary>Menu</summary>
-          <ul className="p-2">
-            <li><a>All</a></li>
-            <li><a>Salad</a></li>
-            <li><a>Pizza</a></li>
-          </ul>
-        </details>
+      <NavLink
+  to="/menu"
+  className={({ isActive, isPending }) =>
+    isPending ? "text-black" : isActive ? "bg-button text-white font-bold hover:text-black" : ""
+  }
+>
+Menu
+</NavLink>
       </li>
       <li className='mx-4'>
         <details>

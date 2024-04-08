@@ -2,13 +2,16 @@ import React from 'react';
 import {Outlet} from 'react-router-dom'
 import Navbar from '../components/Navbar/Navbar';
 import '../App.css';
-import SpecialDishes from '../Pages/Home/SpecialDishes';
+import Footer from '../components/Footer/Footer';
 const MainLayout = () => {
     return (
         <div>
            <Navbar/>
-            <Outlet />
-            <SpecialDishes/>
+           <div className='min-h-screen'>
+                <Outlet />
+           </div>
+            
+          <Footer/>
         </div>
     );
 };
