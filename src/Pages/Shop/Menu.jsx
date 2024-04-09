@@ -98,7 +98,7 @@ const Menu = () => {
     const paginate = (pageNumber)=>setCurrentPage(pageNumber)
 
   return (
-    <div >
+    <div>
         {/* carousel */}
         <div className='mt-20'>
         <Carousol/>
@@ -134,11 +134,7 @@ const Menu = () => {
                          <button className={`border-x-4  font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2 ${selectedCategory === "Pasta"? "activee": ""}`}  onClick={()=>filterItems("Pasta")}>Pasta</button>
                          <button className={`border-x-4  font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2 ${selectedCategory === "Burger"? "activee": ""}`}  onClick={()=>filterItems("Burger")}>Burger</button>
                          <button className={`border-x-4  font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2 ${selectedCategory === "Shawarma"? "activee": ""}`}  onClick={()=>filterItems("Shawarma")}>Shawarma</button>
-                          {/* {category.map((item,idx)=>(
-                            <div key={idx}>
-                                 <p className='border-x-4 border-button hover:bg-button cursor-pointer hover:text-white font-bold  w-24 h-12 text-center items-center flex justify-center rounded-3xl '>{item.category}</p>
-                            </div>
-                          ))} */}
+                          
                       </div>
                  </div>
               </div>
@@ -160,7 +156,7 @@ const Menu = () => {
                   </div>
               </div>
               {/* product cart */}
-              <div  className='grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 mt-12'>
+              <div  className='grid  grid-cols-1 md:grid-cols-2  lg:grid-cols-3 gap-12 mt-12'>
                   {
                     currentItems.map((res,idx)=>(
                         <Card  key={idx} res={res}/>

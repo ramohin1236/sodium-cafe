@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { BiSolidPhoneCall } from 'react-icons/bi';
+import { FaRegUser } from 'react-icons/fa';
 import { Link, NavLink } from 'react-router-dom';
+import Modal from '../Modal';
+import { AuthContext } from './../../Context/AuthProvider';
+import Profile from '../Profile';
 
 const Navbar = () => {
-
-    const [sticky, setSticky]=useState(false)
+  const {user,logout}=useContext(AuthContext)
+  console.log(user);
+    const [sticky, setSticky,  ]=useState(false)
 
     // handle scroll functionn
     useEffect(()=>{
@@ -24,6 +29,10 @@ const Navbar = () => {
         }
        
     },[])
+
+    const handleLogOut=()=>{
+        logout()
+    }
 
     const navItems =<>
      <li className='mx-4'><NavLink
@@ -91,11 +100,17 @@ Menu
         </div>
       </div>
 
+     
 
-
-    <a className="btn
-    rounded-full px-8 flex text-center text-white font-bold
-    bg-button hover:bg-button-hvr"><BiSolidPhoneCall /> Button</a>
+    {
+        user?<Profile user={user}/>: <button
+        onClick={()=>document.getElementById('my_modal_5').showModal()}
+       className="btn text-xl
+       rounded-full px-8 flex text-center text-white font-bold
+       bg-button hover:bg-button-hvr"><FaRegUser className='text-xl font-bold'/> Login</button>
+    }
+    {/* modal body */}
+    <Modal/>
   </div>
 </div>
         </header>
