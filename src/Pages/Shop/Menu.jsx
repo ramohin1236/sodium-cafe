@@ -99,20 +99,43 @@ const Menu = () => {
               <div>
                  <div>
                     <p className='text-3xl font-bold mt-12 mb-4'>Category Here</p>
-                      <div className="pt-4 flex items-center  justify-between overflow-x-auto  gap-7 mb-4 ">
-                          {category.map((item,idx)=>(
+                      <div className="pt-4  items-center flex     overflow-x-auto  gap-7 mb-4 ">
+                         <button className='border-x-4  font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2' onClick={showAll}>All</button>
+                         <button className='border-x-4 font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2'  onClick={()=>filterItems("Chicken")}>Chicken</button>
+                         <button className='border-x-4 font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2'  onClick={()=>filterItems("Noodles")}>Noodles</button>
+                         <button className='border-x-4 font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2'  onClick={()=>filterItems("Set-menu")}>Set-menu</button>
+                         <button className='border-x-4 font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2'  onClick={()=>filterItems("Salad")}>Salad</button>
+                         <button className='border-x-4 font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2'  onClick={()=>filterItems("Vegetable")}>Vegetable</button>
+                         <button className='border-x-4 font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2'  onClick={()=>filterItems("Prawn")}>Prawn</button>
+                         <button className='border-x-4 font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2'  onClick={()=>filterItems("Fried Rice")}>Fried Rice</button>
+                         <button className='border-x-4 font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2'  onClick={()=>filterItems("Beef")}>Beef</button>
+                         <button className='border-x-4 font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2'  onClick={()=>filterItems("Drinks")}>Drinks</button>
+                         <button className='border-x-4 font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2'  onClick={()=>filterItems("Ice Cream")}>Ice Cream</button>
+                         <button className='border-x-4 font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2'  onClick={()=>filterItems("Soup")}>Soup</button>
+                         <button className='border-x-4 font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2'  onClick={()=>filterItems("Chicken-Fry")}>Chicken-Fry</button>
+                         <button className='border-x-4 font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2'  onClick={()=>filterItems("Momo")}>Momo</button>
+                         <button className='border-x-4 font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2'  onClick={()=>filterItems("Steak")}>Steak</button>
+                         <button className='border-x-4 font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2'  onClick={()=>filterItems("Sea Platter")}>Sea Platter</button>
+                         <button className='border-x-4 font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2'  onClick={()=>filterItems("Sea Masala")}>Sea Masala</button>
+                         <button className='border-x-4 font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2'  onClick={()=>filterItems("Sea Fry")}>Sea Fry</button>
+                         <button className='border-x-4 font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2'  onClick={()=>filterItems("Rice Bowl")}>Rice Bowl</button>
+                         <button className='border-x-4 font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2'  onClick={()=>filterItems("Pizza")}>Pizza</button>
+                         <button className='border-x-4 font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2'  onClick={()=>filterItems("Pasta")}>Pasta</button>
+                         <button className='border-x-4 font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2'  onClick={()=>filterItems("Burger")}>Burger</button>
+                         <button className='border-x-4 font-bold hover:bg-button hover:text-white border-button rounded-2xl mx-8 px-8 py-2'  onClick={()=>filterItems("Shawarma")}>Shawarma</button>
+                          {/* {category.map((item,idx)=>(
                             <div key={idx}>
                                  <p className='border-x-4 border-button hover:bg-button cursor-pointer hover:text-white font-bold  w-24 h-12 text-center items-center flex justify-center rounded-3xl '>{item.category}</p>
                             </div>
-                          ))}
+                          ))} */}
                       </div>
                  </div>
               </div>
               {/* product cart */}
-              <div className='grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 mt-12'>
+              <div  className='grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 mt-12'>
                   {
                     filteredItems.map((res,idx)=>(
-                        <Card key={idx} res={res}/>
+                        <Card  key={idx} res={res}/>
                     ))
                   }
               </div>
