@@ -5,12 +5,12 @@ import Card from '../../components/Card'
 const Menu = () => {
     const [menu,setMenu]=useState([])
     const [filteredItems, setFilteredItems]=useState([])
- 
     const [selectedCategory, setSelectedCategory]=useState('all')
     const [category, setCategory]=useState([])
     const [sortOptin, setSortOption]=useState('default')
 
-   console.log(sortOptin);
+     const [currentPage,setCurrentPage]=useState(1)
+     const [itemsPerPage]= useState(10)
 
     useEffect(()=>{
         const fetchtData= async()=>{
@@ -49,12 +49,14 @@ const Menu = () => {
         const filtered = category === 'All' ? menu : menu.filter((item) => item.category === category);
         setFilteredItems(filtered);
         setSelectedCategory(category);
+        setCurrentPage(1)
     }
 // show all data
 
      const showAll =()=>{
         setFilteredItems(menu)
         setSelectedCategory("All")
+        setCurrentPage(1)
      }
 
     //  soting Data
@@ -85,7 +87,15 @@ const Menu = () => {
         }
 
         setFilteredItems(sortedItems)
+        setCurrentPage(1)
     }
+
+    // pagination
+
+    const indexOfLastItem= currentPage*itemsPerPage;
+    const indexOfFirstItem= indexOfLastItem- itemsPerPage;
+    const currentItems = filteredItems.slice(indexOfFirstItem,indexOfLastItem);
+    const paginate = (pageNumber)=>setCurrentPage(pageNumber)
 
   return (
     <div >
@@ -152,7 +162,7 @@ const Menu = () => {
               {/* product cart */}
               <div  className='grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 mt-12'>
                   {
-                    filteredItems.map((res,idx)=>(
+                    currentItems.map((res,idx)=>(
                         <Card  key={idx} res={res}/>
                     ))
                   }
@@ -160,7 +170,20 @@ const Menu = () => {
 
 
         </div>
-       
+
+        {/* pagination */}
+         <div className='flex justify-center mt-6 gap-3'>
+              {
+              Array.from({length: Math.ceil(filteredItems.length / itemsPerPage)}).map((_,idx)=>(
+                <button
+                className={`mx-1 px-3 py-1 rounded-full ${currentPage === idx+1 ? "bg-button text-white text-2xl font-bold":"font-bold text-2xl bg-gray-300"}`}
+                onClick={()=>paginate(idx+1)}
+                key={idx+1}>
+                    {idx+1}
+                </button>
+              ))
+              }
+         </div>
     </div>
   )
 }
