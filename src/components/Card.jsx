@@ -6,9 +6,11 @@ import { AuthContext } from '../Context/AuthProvider';
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import useCart from '../hooks/useCart';
 
 const Card = ({ res }) => {
    const {name,image,price,recipe,_id}=res;
+   const [cart,refetch]=useCart()
     const navigate =useNavigate()
     const location= useLocation()
     const [isHeartFilled, setIsHeartFilled]=useState(false)
@@ -38,6 +40,7 @@ const Card = ({ res }) => {
          .then(res=>res.json())
          .then(data=>{
             if(data.insertedId){
+                refetch()
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -45,6 +48,7 @@ const Card = ({ res }) => {
                     showConfirmButton: false,
                     timer: 1500
                   });
+                
             }
             
         })
