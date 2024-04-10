@@ -1,6 +1,6 @@
 [
     {
-      "_id": "1",
+      
       "name": "Chicken Chili (1.3)",
       "recipe": "Chicken Chili, place on buns with cheese, lettuce, tomato, onion, and condiments.",
       "image": "/public/chicken-1.png",
@@ -9,7 +9,7 @@
       "price": 349
     },
     {
-      "_id": "2",
+      
       "name": "Chicken Green Chili (1.3)",
       "recipe": "Spread tomato sauce on Chicken Green Chili dough, add sliced mozzarella and basil leaves, bake until crust is golden.",
       "image": "/public/Chicken-2.png",
@@ -18,7 +18,7 @@
       "price": 340
     },
     {
-      "_id": "3",
+      
       "name": "Beef Chowmin(1.3)",
       "recipe": "Beef Chowmin lettuce with Caesar dressing, croutons, and grated Parmesan cheese.",
       "image": "/public/Noodles-1.png",
@@ -27,7 +27,7 @@
       "price": 399
     },
     {
-      "_id": "4",
+      
       "name": "Nasi Gurih(set-menu-10)",
       "recipe": "Cook fettuccine, sauté chicken, combine with Alfredo sauce, garnish with parsley and Parmesan.",
       "image": "/public/set-menu-1.jpe",
@@ -36,7 +36,7 @@
       "price": 249
     },
     {
-      "_id": "5",
+      
       "name": "Chicken Cash Nut Salad(1.3)",
       "recipe": "Mix flour, cocoa powder, sugar, eggs, and chocolate chips,Nut, bake until set.",
       "image": "/public/salad-1.png",
@@ -45,7 +45,7 @@
       "price": 299
     },
     {
-      "_id": "6",
+      
       "name": "Chinese Vegetable(1.3)",
       "recipe": "Sauté mixed vegetables with garlic, ginger, and soy sauce until tender-crisp.",
       "image": "/public/vegetable-1.png",
@@ -54,7 +54,7 @@
       "price": 230
     },
     {
-      "_id": "7",
+      
       "name": "Prawn Masala",
       "recipe": "Prawn Masala fillets, serve on warmed tortillas with cabbage slaw and chipotle mayo.",
       "image": "/public/prawn-1.png",
@@ -63,7 +63,7 @@
       "price": 380
     },
     {
-      "_id": "8",
+      
       "name": "Egg Fried Rice(1.3)",
       "recipe": "Prawn Masala fillets, serve on warmed tortillas with cabbage slaw and chipotle mayo.",
       "image": "/public/prawn-1.png",
@@ -72,7 +72,7 @@
       "price": 380
     },
     {
-      "_id": "9",
+      
       "name": "Beef Masala(1.3)",
       "recipe": "Prawn Masala fillets, serve on warmed tortillas with cabbage slaw and chipotle mayo.",
       "image": "/public/prawn-1.png",
@@ -81,7 +81,7 @@
       "price": 380
     },
     {
-      "_id": "10",
+      
       "name": "Black Coffee",
       "recipe": "Prawn Masala fillets, serve on warmed tortillas with cabbage slaw and chipotle mayo.",
       "image": "/public/prawn-1.png",
@@ -90,7 +90,7 @@
       "price": 380
     },
     {
-      "_id": "11",
+      
       "name": "Chocolate",
       "recipe": "Prawn Masala fillets, serve on warmed tortillas with cabbage slaw and chipotle mayo.",
       "image": "/public/prawn-1.png",
@@ -99,7 +99,7 @@
       "price": 120
     },
     {
-      "_id": "12",
+      
       "name": "Thai Clear Soup(1.3)",
       "recipe": "Prawn Masala fillets, serve on warmed tortillas with cabbage slaw and chipotle mayo.",
       "image": "/public/prawn-1.png",
@@ -108,7 +108,7 @@
       "price": 350
     },
     {
-      "_id": "13",
+      
       "name": "Chrispy Chicken",
       "recipe": "Prawn Masala fillets, serve on warmed tortillas with cabbage slaw and chipotle mayo.",
       "image": "/public/prawn-1.png",
@@ -117,7 +117,7 @@
       "price": 120
     },
     {
-      "_id": "14",
+      
       "name": "Chicken Momo(6pcs)",
       "recipe": "Prawn Masala fillets, serve on warmed tortillas with cabbage slaw and chipotle mayo.",
       "image": "/public/prawn-1.png",
@@ -126,7 +126,7 @@
       "price": 180
     },
     {
-      "_id": "15",
+      
       "name": "Chicken Steak",
       "recipe": "Prawn Masala fillets, serve on warmed tortillas with cabbage slaw and chipotle mayo.",
       "image": "/public/prawn-1.png",
@@ -135,7 +135,7 @@
       "price": 399
     },
     {
-      "_id": "16",
+      
       "name": "Pompet Platter (Rice,Vegetable,Red sinaba)",
       "recipe": "Prawn Masala fillets, serve on warmed tortillas with cabbage slaw and chipotle mayo.",
       "image": "/public/prawn-1.png",
@@ -144,7 +144,7 @@
       "price": 799
     },
     {
-      "_id": "17",
+      
       "name": "Red Sinaba Masala",
       "recipe": "Prawn Masala fillets, serve on warmed tortillas with cabbage slaw and chipotle mayo.",
       "image": "/public/prawn-1.png",
@@ -153,7 +153,7 @@
       "price": 699
     },
     {
-      "_id": "18",
+      
       "name": "Pompet Fry",
       "recipe": "Prawn Masala fillets, serve on warmed tortillas with cabbage slaw and chipotle mayo.",
       "image": "/public/prawn-1.png",
@@ -162,7 +162,7 @@
       "price": 599
     },
     {
-      "_id": "19",
+      
       "name": "Crispy Rice Bowl",
       "recipe": "Prawn Masala fillets, serve on warmed tortillas with cabbage slaw and chipotle mayo.",
       "image": "/public/prawn-1.png",
@@ -171,7 +171,7 @@
       "price": 130
     },
     {
-      "_id": "20",
+      
       "name": "Chicken Pizz",
       "recipe": "Prawn Masala fillets, serve on warmed tortillas with cabbage slaw and chipotle mayo.",
       "image": "/public/prawn-1.png",
@@ -180,7 +180,7 @@
       "price": 399
     },
     {
-      "_id": "21",
+      
       "name": "Oven Baked Pasta(1.1)",
       "recipe": "Prawn Masala fillets, serve on warmed tortillas with cabbage slaw and chipotle mayo.",
       "image": "/public/prawn-1.png",
@@ -189,7 +189,7 @@
       "price": 220
     },
     {
-      "_id": "22",
+      
       "name": "Chicken Burger(single patty)",
       "recipe": "Prawn Masala fillets, serve on warmed tortillas with cabbage slaw and chipotle mayo.",
       "image": "/public/prawn-1.png",
@@ -198,7 +198,7 @@
       "price": 220
     },
     {
-      "_id": "23",
+      
       "name": "BBQ Chicken Shwarama",
       "recipe": "Prawn Masala fillets, serve on warmed tortillas with cabbage slaw and chipotle mayo.",
       "image": "/public/prawn-1.png",

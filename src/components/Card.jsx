@@ -1,14 +1,69 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaHeart, FaShoppingCart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../Context/AuthProvider';
+import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const Card = ({ res }) => {
-  
+   const {name,image,price,recipe,_id}=res;
+    const navigate =useNavigate()
+    const location= useLocation()
     const [isHeartFilled, setIsHeartFilled]=useState(false)
-
+    const {user}=useContext(AuthContext)
+ console.log(user);
     const handleHeartClick=()=>{
         setIsHeartFilled(!isHeartFilled)
+    }
+
+    const handleAddToCart=(res)=>{
+        if(user && user?.email){
+          const cartItems={
+            menuItemId: _id,
+            name,
+            quantity: 1,
+            image,
+            price,
+            email:user.email,
+          }
+         fetch("http://localhost:8000/carts",{
+            method:"POST",
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(cartItems)
+         })
+         .then(res=>res.json())
+         .then(data=>{
+            if(data.insertedId){
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your work has been saved",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+            }
+            
+        })
+        }else{
+            Swal.fire({
+                title: "Please Login!",
+                text: "Without an account can't able to add products!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Signup"
+              }).then((result) => {
+                if (result.isConfirmed) {
+                 navigate('/signup',{state:{from:location}});
+                }
+              });
+        }
+        
     }
 
     return (
@@ -44,9 +99,11 @@ const Card = ({ res }) => {
                 <p>{res.recipe.length > 81 ? res.recipe.slice(0, 81) + '...' : res.recipe}</p>
 
                 <div className="card-actions ">
-                    <button className="mt-6 btn
-    rounded-full px-8 flex text-center text-white font-bold
-    bg-button hover:bg-button-hvr"><FaShoppingCart /> Buy Now </button>
+                    <button
+                    onClick={()=>handleAddToCart(res)}
+                    className="mt-6 btn
+                      rounded-full px-8 flex text-center text-white font-bold
+                        bg-button hover:bg-button-hvr"><FaShoppingCart /> Buy Now </button>
                 </div>
             </div>
         </div>
