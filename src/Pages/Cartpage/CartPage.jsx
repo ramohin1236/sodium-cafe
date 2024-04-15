@@ -3,6 +3,7 @@ import useCart from '../../hooks/useCart'
 import { FaTrash } from 'react-icons/fa'
 import  Swal  from 'sweetalert2';
 import { AuthContext } from '../../Context/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const CartPage = () => {
 
@@ -227,7 +228,9 @@ const CartPage = () => {
                </div>
         </div>
         <div className='text-center md:text-end mt-12'>
+<Link to='/process-chekout'>
 <button className='px-8 py-6 font-bold text-white text-xl rounded-2xl bg-button hover:bg-button-hvr'>Procced Cheakout</button>
+</Link>
 </div>
 
        

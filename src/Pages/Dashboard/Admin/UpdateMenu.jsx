@@ -1,6 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import useAxios from '../../../hooks/useAxios'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
@@ -8,7 +8,7 @@ import { FaUtensils } from 'react-icons/fa'
 
 const UpdateMenu = () => {
     const item= useLoaderData()
-
+   const navigate =useNavigate()
 
     const {register,handleSubmit,reset} = useForm()
     const axiosPublic = useAxios()
@@ -48,6 +48,7 @@ const UpdateMenu = () => {
                     showConfirmButton: false,
                     timer: 1500
                   });
+                  navigate('/dashboard/manage-item')
             }
         }
        
@@ -143,6 +144,7 @@ className="textarea textarea-bordered text-xl font-medium text-gray-500 h-24" pl
 </div>
      <div className='form-control w-full '>
      <input
+    
        {...register("image",{required: true})}
      type="file" className="file-input w-full " />
      </div>

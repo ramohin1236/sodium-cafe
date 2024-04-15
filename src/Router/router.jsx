@@ -13,6 +13,8 @@ import Users from "../Pages/Dashboard/Admin/Users";
 import AddMenu from "../Pages/Dashboard/AddMenu";
 import ManageItems from "../Pages/Dashboard/Admin/MannageItems";
 import UpdateMenu from "../Pages/Dashboard/Admin/UpdateMenu";
+import Payment from "../Pages/Payment/Payment";
+import Order from "../Pages/Order";
 
 
  export const router = createBrowserRouter([
@@ -29,12 +31,20 @@ import UpdateMenu from "../Pages/Dashboard/Admin/UpdateMenu";
             element:<Menu/>
         },
         {
+            path:"/order",
+            element:<Order/>
+        },
+        {
             path:"/update-profile",
             element:<PrivateRoute><UpdateProfile/></PrivateRoute>
         },
         {
             path:"/cart-page",
             element:<PrivateRoute><CartPage/></PrivateRoute>
+        },
+        {
+            path:"/process-chekout",
+            element:<PrivateRoute><Payment/></PrivateRoute>
         },
         
       ]
