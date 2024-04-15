@@ -6,10 +6,12 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../Context/AuthProvider";
 import { toast } from 'react-hot-toast';
 import { useLocation,useNavigate } from 'react-router-dom';
+import axios from "axios";
+import useAxios from "../hooks/useAxios";
 const Modal = () => {
 
     const {signInWithGoogle, signin, user,loading}=useContext(AuthContext)
-
+ const axiosPublic = useAxios()
     const location=useLocation()
     const navigate =useNavigate()
     const from = location?.state?.from?.pathname ||"/";
@@ -27,6 +29,14 @@ const Modal = () => {
         signin(email,password)
         .then(result=>{
              const user= result.user;
+             const userInfo ={
+                name: data.name,
+                email: data.email
+            }
+            axiosPublic.post('/users', userInfo)
+            .then( (response)=> {
+              console.log(response);
+            })
              document.getElementById('my_modal_5').close()
              navigate(from,{replace: true})
              toast.success("Successfully Login!")
@@ -38,16 +48,20 @@ const Modal = () => {
         
       }
 
-      
-    
-
-
-
-  const handlesignInWithGoogle =()=>{
+      const handlesignInWithGoogle =()=>{
         signInWithGoogle()
         .then((result)=>{
             const user = result.user
+            const userInfo ={
+                name: result?.user?.displayName,
+                email: result?.user?.email
+            }
+            axiosPublic.post('/users', userInfo)
+              .then( (response)=> {
+                console.log(response);
+              })
             console.log("user",user);
+            navigate(from,{replace: true})
             toast.success("User Created Successfully!")
         }).catch((error)=>console.log(error))
   }

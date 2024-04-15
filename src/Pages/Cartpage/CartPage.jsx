@@ -12,7 +12,7 @@ const CartPage = () => {
     // 
 
     const handleIncrease = (item) => {
-       if(item.quantity >1){
+    
         fetch(`http://localhost:8000/carts/${item?._id}`, {
             method: 'PUT',
             headers: {
@@ -22,10 +22,10 @@ const CartPage = () => {
         })
         .then(res => res.json())
         .then(data => {
-            const updateCart = cartItems.map((cartItem) => {
-            
+            const updateCart = cart.map((cartItem) => { // Use cart instead of cartItems
+                
                 if (cartItem.id === item.id) {
-        
+    
                     return {
                         ...cartItem,
                         quantity: cartItem.quantity + 1
@@ -34,13 +34,13 @@ const CartPage = () => {
                 return cartItem;
             });
             setCartItems(updateCart);
-
-            refetch(); 
+          
+            refetch(); // Make sure refetch is called after setCartItems
         })
         .catch(error => {
             console.error('Error updating cart:', error);
         });
-       }
+       
     };
 
     const handleDecrease = (item) => {

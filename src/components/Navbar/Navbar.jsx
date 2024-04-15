@@ -1,14 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { BiSolidPhoneCall } from 'react-icons/bi';
+import React, {  useEffect, useState } from 'react';
 import { FaRegUser } from 'react-icons/fa';
 import { Link, NavLink } from 'react-router-dom';
 import Modal from '../Modal';
-import { AuthContext } from './../../Context/AuthProvider';
 import Profile from '../Profile';
 import useCart from '../../hooks/useCart';
+import useAuth from '../../hooks/useAuth';
 
 const Navbar = () => {
-  const {user,logout}=useContext(AuthContext)
+  const {user,logout}=useAuth()
   console.log(user);
     const [sticky, setSticky,  ]=useState(false)
     // hoook

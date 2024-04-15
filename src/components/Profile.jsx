@@ -2,12 +2,20 @@ import { useContext } from "react";
 import { AuthContext } from "../Context/AuthProvider";
 import { FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import useAdmin from "../hooks/useAdmin";
 
 const Profile = () => {
-    const {user,logout}=useContext(AuthContext);
+    const {user,logout}=useAuth();
+
     const handleLogOut=()=>{
         logout()
     }
+
+   
+
+
+
     return (
         <div>
         <div className="drawer drawer-end z-50">
@@ -28,8 +36,12 @@ const Profile = () => {
     <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
       {/* Sidebar content here */}
       <li><Link to='/update-profile'>Profile</Link></li>
-      <li><a>Sidebar Item 2</a></li>
-      <li><a>Setting</a></li>
+      <li><Link to='/order'>Orders</Link></li>
+
+         <li><Link to='/dashboard'>Dashboard</Link></li>
+   
+    
+  
       <button
         onClick={handleLogOut}
         className='btn btn-sm bg-button hover:bg-button-hvr hover:text-white font-bold'>Logout</button>

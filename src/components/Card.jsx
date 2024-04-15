@@ -15,7 +15,7 @@ const Card = ({ res }) => {
     const location= useLocation()
     const [isHeartFilled, setIsHeartFilled]=useState(false)
     const {user}=useContext(AuthContext)
- console.log(user);
+
     const handleHeartClick=()=>{
         setIsHeartFilled(!isHeartFilled)
     }
@@ -39,12 +39,24 @@ const Card = ({ res }) => {
          })
          .then(res=>res.json())
          .then(data=>{
-            if(data.insertedId){
+            console.log(data.message);
+            if(data){
                 refetch()
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: "Your work has been saved",
+                    title: `${name} added Successfully!`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                
+            }
+            if(data.message){
+                refetch()
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: `${name} Already added!`,
                     showConfirmButton: false,
                     timer: 1500
                   });

@@ -7,6 +7,10 @@ import Profile from "../components/Profile";
 import UpdateProfile from "../Pages/Dashboard/UpdateProfile";
 import CartPage from "../Pages/Cartpage/CartPage";
 import PrivateRoute from './../PrivateRoute/PrivateRoute';
+import DashboardLayot from "../Layout/DashboardLayout/DashboardLayot";
+import Dashboard from "../Pages/Dashboard/Admin/Dashboard";
+import Users from "../Pages/Dashboard/Admin/Users";
+import AddMenu from "../Pages/Dashboard/AddMenu";
 
 
  export const router = createBrowserRouter([
@@ -28,7 +32,7 @@ import PrivateRoute from './../PrivateRoute/PrivateRoute';
         },
         {
             path:"/cart-page",
-            element:<CartPage/>
+            element:<PrivateRoute><CartPage/></PrivateRoute>
         },
         
       ]
@@ -37,4 +41,24 @@ import PrivateRoute from './../PrivateRoute/PrivateRoute';
         path:"/signup",
         element:<Signup/>
     },
+    {
+        path: 'dashboard',
+        element: <PrivateRoute>
+            <DashboardLayot/>
+        </PrivateRoute>,
+        children:[
+          {
+            path:'',
+            element: <Dashboard/>
+          },
+          {
+            path:'users',
+            element: <Users/>
+          },
+          {
+            path:'add-menu',
+            element: <AddMenu/>
+          },
+        ]
+    }
   ]);

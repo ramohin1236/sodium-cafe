@@ -2,18 +2,20 @@
 import React, { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
 import Modal from './Modal'
 import { AuthContext } from '../Context/AuthProvider'
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import axios from 'axios'
+import useAxios from '../hooks/useAxios'
 
 const Signup = () => {
     const [errorMessage, setErrorMessage]=useState('')
     const location=useLocation()
     const navigate =useNavigate()
     const from = location?.state?.from?.pathname ||"/";
+        const axiosPublic =useAxios()
     const {
         register,
         handleSubmit,
@@ -21,15 +23,29 @@ const Signup = () => {
       } = useForm()
 
 
-      const {createUser,signInWithGoogle,logout}=useContext(AuthContext);
+      const {createUser,signInWithGoogle,logout,updateUserProfile}=useContext(AuthContext);
 
 
       const onSubmit = (data) => {
         const email= data.email;
+    
         const password= data.password;
         createUser(email,password)
         .then((result)=>{
             const user= result.user;
+
+
+            updateUserProfile(data.email,data.photoURL).then(()=>{
+                const userInfo ={
+                    name: data.name,
+                    email: data.email
+                }
+                axiosPublic.post('/users', userInfo)
+                  .then( (response)=> {
+                    console.log(response);
+                  })
+            })
+
             logout();
             
             document.getElementById('my_modal_5').showModal()
@@ -48,6 +64,14 @@ const Signup = () => {
             signInWithGoogle()
             .then((result)=>{
                 const user = result.user
+                const userInfo ={
+                    name: result?.user?.displayName,
+                    email: result?.user?.email
+                }
+                axiosPublic.post('/users', userInfo)
+                  .then( (response)=> {
+                    console.log(response);
+                  })
                 console.log("user",user);
                 navigate(from,{replace: true})
                 toast.success("User Created Successfully!")
@@ -76,6 +100,14 @@ const Signup = () => {
           onSubmit={handleSubmit(onSubmit)}
           className="card-body" method="dialog">
           <p className="text-3xl font-bold text-center">Sign UP</p>
+          <div className="form-control">
+          <label className="label">
+            <span className="label-text">Name</span>
+          </label>
+          <input type="name" placeholder="Name" className="input input-bordered" required 
+           {...register("name")}
+          />
+        </div>
           {/* email */}
         <div className="form-control">
           <label className="label">
