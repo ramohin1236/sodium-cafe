@@ -11,6 +11,7 @@ import DashboardLayot from "../Layout/DashboardLayout/DashboardLayot";
 import Dashboard from "../Pages/Dashboard/Admin/Dashboard";
 import Users from "../Pages/Dashboard/Admin/Users";
 import AddMenu from "../Pages/Dashboard/AddMenu";
+import ManageItems from "../Pages/Dashboard/Admin/MannageItems";
 
 
  export const router = createBrowserRouter([
@@ -58,6 +59,10 @@ import AddMenu from "../Pages/Dashboard/AddMenu";
           {
             path:'add-menu',
             element: <AddMenu/>
+          },
+          {
+            path:'manage-item',
+            element: <ManageItems/>
           },
         ]
     }

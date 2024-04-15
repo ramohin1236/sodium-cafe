@@ -112,7 +112,7 @@ const DashboardLayot = () => {
 
 
                  <li><Link to='/dashboard/add-menu' className='text-xl  text-black font-semibold hover:text-button mt-4'><FaPlus /> Add Menu</Link></li>
-                 <li><Link to='/dashboard/users' className='text-xl  text-black font-semibold hover:text-button mt-4'><FaEdit /> Manage Items</Link></li>
+                 <li><Link to='/dashboard/manage-item' className='text-xl  text-black font-semibold hover:text-button mt-4'><FaEdit /> Manage Items</Link></li>
            
               <hr />
            {/* Sharrd links */}
