@@ -60,10 +60,10 @@ const DashboardLayot = () => {
   
     const {logout,loading}=useAuth()
 
-    // const [isAdmin , isAdminLoading]=useAdmin()
-    // console.log("object",isAdmin);
+    const [isAdmin , isAdminLoading]=useAdmin()
+    console.log("object",isAdmin);
 
-  const isAdmin = true;
+ console.log(isAdmin);
 
 
   return (
@@ -93,7 +93,7 @@ const DashboardLayot = () => {
            
                    <div className=' flex text-center items-center '>
                    <li>
-                       <Link to='/Dashboard'
+                       <Link 
                        className='text-3xl font-bold text-center'
                        >
                            Sodium Cafe
@@ -105,7 +105,7 @@ const DashboardLayot = () => {
                    </div>
                <hr />
            
-                 <li><Link to='/dashboard' className='text-xl mt-8 text-black font-semibold hover:text-button'><MdDashboardCustomize /> Dashboard</Link></li>
+                 {/* <li><Link to='/dashboard' className='text-xl mt-8 text-black font-semibold hover:text-button'><MdDashboardCustomize /> Dashboard</Link></li> */}
                  
                  <li><Link to='/dashboard/users' className='text-xl  text-black font-semibold hover:text-button mt-4'><FaUsers /> All Users</Link></li>
                  <li><Link to='/dashboard/users' className='text-xl  text-black font-semibold hover:text-button mt-4'><FaShoppingBag /> Manage Bookings</Link></li>

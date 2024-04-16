@@ -7,8 +7,10 @@ import useAuth from './../../hooks/useAuth';
 import useAxiosSecure from './../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import useCart from './../../hooks/useCart';
 
 const CheckoutForm = ({price,cart}) => {
+    const [refetch] =useCart()
     const stripe = useStripe();
     const elements = useElements();
     const [error, setError]=useState('')
@@ -95,7 +97,9 @@ const CheckoutForm = ({price,cart}) => {
               axiosSecure.post('/payments',paymentInformation)
               .then(res=>{
                 alert("Payment Success!")
+                
                 navigate('/order')
+                refetch()
               })
          
 
@@ -104,6 +108,7 @@ const CheckoutForm = ({price,cart}) => {
             
          }
        }
+       
  };
 
 

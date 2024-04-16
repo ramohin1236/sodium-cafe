@@ -10,7 +10,7 @@ const CartPage = () => {
     const [cart,refetch]=useCart()
     const {user}=useContext(AuthContext)
   const [cartItems, setCartItems]=useState([])
-    // 
+    console.log("dfsdfsdfsdafsdaf",cart);
 
     const handleIncrease = (item) => {
     
@@ -93,14 +93,14 @@ const CartPage = () => {
               .then(data=>{
                 console.log(data);
                if(data.deletedCount> 0){
-                refetch()
+                
                 Swal.fire({
                     title: "Deleted!",
                     text: "Your file has been deleted",
                     icon: "success"
                 })
                }
-               
+               refetch()
             })
             }
           });

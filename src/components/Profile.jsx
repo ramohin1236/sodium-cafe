@@ -1,9 +1,6 @@
-import { useContext } from "react";
-import { AuthContext } from "../Context/AuthProvider";
 import { FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import useAdmin from "../hooks/useAdmin";
 
 const Profile = () => {
     const {user,logout}=useAuth();

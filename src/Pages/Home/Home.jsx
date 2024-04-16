@@ -13,7 +13,7 @@ const Home = () => {
            <SpecialDishes/>
            {/* testimonial incomplete */}
            <Testimonial/>
-           <Services/>
+           {/* <Services/> */}
         </div>
     );
 };
