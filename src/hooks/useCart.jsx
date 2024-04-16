@@ -11,7 +11,7 @@ const useCart = () => {
     const {refetch,data:cart= []} =useQuery({
         queryKey:["carts",user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:8000/carts?email=${user?.email}`)
+            const res = await fetch(`https://sodium-cafe-mongoose.onrender.com/carts?email=${user?.email}`)
              return res.json()
           },
     })

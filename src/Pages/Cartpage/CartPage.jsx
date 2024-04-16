@@ -14,7 +14,7 @@ const CartPage = () => {
 
     const handleIncrease = (item) => {
     
-        fetch(`http://localhost:8000/carts/${item?._id}`, {
+        fetch(`https://sodium-cafe-mongoose.onrender.com/carts/${item?._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -45,7 +45,7 @@ const CartPage = () => {
     };
 
     const handleDecrease = (item) => {
-        fetch(`http://localhost:8000/carts/${item?._id}`, {
+        fetch(`https://sodium-cafe-mongoose.onrender.com/carts/${item?._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -86,7 +86,7 @@ const CartPage = () => {
             confirmButtonText: "Yes, delete it!"
           }).then((result) => {
             if (result.isConfirmed) {
-              fetch(`http://localhost:8000/carts/${item?._id}`,{
+              fetch(`https://sodium-cafe-mongoose.onrender.com/carts/${item?._id}`,{
                 method: 'DELETE'
               })
               .then(res=>res.json())

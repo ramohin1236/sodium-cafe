@@ -75,7 +75,7 @@ const [loading,setLoading]=useState(true)
       setUser(currentUser)
      if(currentUser){
         const userInfo ={email: currentUser.email}
-        axios.post('http://localhost:8000/jwt',userInfo)
+        axios.post('https://sodium-cafe-mongoose.onrender.com/jwt',userInfo)
         .then( (response)=> {
         //   console.log(response.data.token);
           if(response.data.token){

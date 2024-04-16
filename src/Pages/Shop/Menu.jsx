@@ -15,7 +15,7 @@ const Menu = () => {
     useEffect(()=>{
         const fetchtData= async()=>{
             try{
-                const response = await fetch('http://localhost:8000/menu')
+                const response = await fetch('https://sodium-cafe-mongoose.onrender.com/menu')
                 const data= await response.json()
                 console.log(data);
                 setMenu(data)

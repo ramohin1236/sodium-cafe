@@ -30,7 +30,7 @@ const Card = ({ res }) => {
             price,
             email:user.email,
           }
-         fetch("http://localhost:8000/carts",{
+         fetch("https://sodium-cafe-mongoose.onrender.com/carts",{
             method:"POST",
             headers:{
                 'content-type':'application/json'
