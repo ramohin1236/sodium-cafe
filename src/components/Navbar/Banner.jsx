@@ -1,68 +1,102 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { BiArrowToRight } from 'react-icons/bi';
-import banner from '/public/banner.png';
-import small from '/public/small-1.png';
-import noodles from '/public/noodles.png';
+
+// Import your background images
+const backgroundImages = [
+    '/public/bg.jpg',
+    '/public/bg-2.jpg',
+    '/public/bg-3.jpg',
+    '/public/bg-4.jpg'
+];
+
 const Banner = () => {
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    // Auto-slide functionality
+    React.useEffect(() => {
+        const slideInterval = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % backgroundImages.length);
+        }, 5000); // Change slide every 5 seconds
+
+        return () => clearInterval(slideInterval);
+    }, []);
+
     return (
-        <div className='section-container  bg-gradient-to-r from-[#FAFAFA] from-0% to-[#FCFCFC] to-100%'>
-           <div className='py-24 flex flex-col md:flex-row-reverse justify-between items-center gap-8'>
-             {/* image */}
-             <div className='md:w-1/2 '>
-               <img src={banner} alt="" />
+        <div className='relative h-[90vh] overflow-hidden'>
+            {/* Background Image Slider */}
+            <div className='absolute inset-0'>
+                {backgroundImages.map((image, index) => (
+                    <motion.div 
+                        key={index}
+                        initial={{ 
+                            opacity: 0,
+                            scale: 1
+                        }}
+                        animate={{ 
+                            opacity: index === currentSlide ? 1 : 0,
+                            scale: index === currentSlide ? 1.1 : 1,
+                            transition: { 
+                                opacity: {
+                                    duration: 2,
+                                    ease: "easeInOut"
+                                },
+                                scale: {
+                                    duration: 0.75,
+                                    ease: "easeOut"
+                                }
+                            }
+                        }}
+                        className='absolute inset-0 bg-cover bg-center'
+                        style={{ 
+                            backgroundImage: `url(${image})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center'
+                        }}
+                    >
+                        {/* Overlay to improve text readability */}
+                        <div className='absolute inset-0 bg-black/40'></div>
+                    </motion.div>
+                ))}
+            </div>
 
-               <div className='flex gap-6 flex-col md:flex-row items-center justify-around -mt-20'>
-                   <div className='flex justify-start items-center shadow-2xl rounded-3xl pl-4 w-96 bg-white h-36'>
-                    <img src={small} className='w-32' alt="" />
-                    <div className='space-y-2'>
-                        <h5 className='font-bold text-xl'>Fried Rice</h5>
-                        <h5 className='text-xl font-semibold'>160 tk</h5>
-                        <div className="rating rating-sm">
-  <input type="radio" name="rating-2" className="mask mask-star-2 bg-button" readOnly
-   />
-  <input type="radio" name="rating-2" className="mask mask-star-2 bg-button" readOnly
-   checked />
-  <input type="radio" name="rating-2" className="mask mask-star-2 bg-button" readOnly
-   />
-  <input type="radio" name="rating-2" className="mask mask-star-2 bg-button" readOnly
-   />
-  <input type="radio" name="rating-2" className="mask mask-star-2 bg-button" readOnly
-   />
-</div>
-                    </div>
-                   </div>
-                   {/* second picture */}
-                   <div className='hidden  md:flex justify-start items-center shadow-2xl rounded-3xl pl-4 w-96 bg-white  h-36'>
-                    <img src={noodles} className='w-32' alt="" />
-                    <div className='space-y-2'>
-                        <h5 className='font-bold text-xl'>Chowmin</h5>
-                        <h5 className='text-xl font-semibold'>190 tk</h5>
-                        <div className="rating rating-sm">
-  <input type="radio" name="rating-2" className="mask mask-star-2 bg-button" readOnly
-   />
-  <input type="radio" name="rating-2" className="mask mask-star-2 bg-button" readOnly
-   checked />
-  <input type="radio" name="rating-2" className="mask mask-star-2 bg-button" readOnly
-   />
-  <input type="radio" name="rating-2" className="mask mask-star-2 bg-button" readOnly
-   />
-  <input type="radio" name="rating-2" className="mask mask-star-2 bg-button" readOnly
-   />
-</div>
-                    </div>
-                   </div>
-               </div>
-              </div>
-            {/* text */}
-              <div className='md:w-1/2 space-y-7 px-4'>
-                <p className='md:text-5xl text-4xl font-bold md:leading-snug leading-snug'>Dive into Delights of Delectable Food with <span className='text-button-hvr md:text-6xl'>Sodium Cafe</span></p>
+            {/* Content Overlay */}
+            <div className='relative z-10 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center'>
+                <div className='text-white max-w-3xl'>
+                    <h1 className='text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4'>
+                        Dive into Delights of 
+                        <span className='block text-[#FF6B6B] mt-2'>Delectable Food</span>
+                    </h1>
+                    
+                    <p className='text-lg md:text-xl mb-8 text-gray-200'>
+                        Experience culinary magic with our carefully crafted dishes that tantalize your taste buds.
+                    </p>
+                    
+                    <motion.button 
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="btn bg-[#FF6B6B] hover:bg-[#FF4757] text-white rounded-full 
+                        px-10 text-lg flex items-center gap-3 mx-auto"
+                    >
+                        Order Now <BiArrowToRight className='text-2xl'/>
+                    </motion.button>
+                </div>
 
-                <button className="mt-6 btn
-    rounded-full px-8 flex text-center text-white font-bold
-    bg-button hover:bg-button-hvr"> Order Now <BiArrowToRight className='text-2xl'/></button>
-              </div>
-             
-           </div>
+                {/* Slide Indicators */}
+                <div className='absolute bottom-10 left-0 right-0 flex justify-center space-x-3'>
+                    {backgroundImages.map((_, index) => (
+                        <motion.button
+                            key={index}
+                            onClick={() => setCurrentSlide(index)}
+                            className={`w-3 h-3 rounded-full transition-colors duration-300 ${
+                                currentSlide === index 
+                                    ? 'bg-[#FF6B6B]' 
+                                    : 'bg-white/50 hover:bg-white/75'
+                            }`}
+                        />
+                    ))}
+                </div>
+            </div>
         </div>
     );
 };

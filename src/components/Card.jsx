@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useState } from 'react';
 import { FaHeart, FaShoppingCart } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+
 import { AuthContext } from '../Context/AuthProvider';
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom';
@@ -87,11 +87,11 @@ const Card = ({ res }) => {
         <div className="card w-96 bg-base-100 shadow-xl ">
 
             
-            <Link to={`/menu/${res._id}`}>
+            <div >
             <figure><img src={res.image} alt="Shoes" className='w-full object-cover rounded-3xl
             hover:scale-105 transition-all duration-200 md:h-72
             ' /></figure>
-            </Link>
+            </div>
             <div className="card-body">
 
                 <div className='-mt-6'>  <h2 className="card-title font-bold text-2xl">{res.name}

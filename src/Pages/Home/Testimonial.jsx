@@ -7,7 +7,7 @@ const Testimonial = () => {
             <p className='text-5xl font-bold text-center my-10'>Contact With Us</p>
             <div className='flex flex-col md:flex-row items-centero justify-between gap-12 mt-12'>
                 <div className='md:w-1/2'>
-                    <img className='rounded-2xl h-[500px] w-full object-cover' src="/public/432720033_386833024106507_7408708563593600012_n.jpg" alt="" />
+                    <img className='rounded-2xl h-[500px] w-full object-cover' src="https://i.ibb.co/DMmcshP/432720033-386833024106507-7408708563593600012-n.jpg" alt="" />
                 </div>
                 <div className='md:w-1/2 justify-center items-center flex'>
                 <form className="border w-full p-16 rounded-2xl bg-slate-200">

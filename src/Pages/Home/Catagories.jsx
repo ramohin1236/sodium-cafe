@@ -1,12 +1,13 @@
 import React from 'react';
 
+
 const Catagories = () => {
 
     const cateItems=[
-        {id:1, title:"Burger",des:"(11 dishes)", image:"/public/banner.png"},
-        {id:2, title:"Fried Rice",des:"(6 dishes)", image:"/public/fried-rice-1.png"},
-        {id:3, title:"Chicken Fry",des:"(5 dishes)", image:"/public/chicken.png"},
-        {id:4, title:"Appetizer",des:"(10 dishes)", image:"/public/nachos.png"}
+        {id:1, title:"Burger",des:"(11 dishes)", image:'https://i.ibb.co/vVqfwVD/banner.png'},
+        {id:2, title:"Fried Rice",des:"(6 dishes)", image:"https://i.ibb.co/NZrwWJm/fried-rice-1.png"},
+        {id:3, title:"Chicken Fry",des:"(5 dishes)", image:"https://i.ibb.co/NC3pk9w/chicken.png"},
+        {id:4, title:"Appetizer",des:"(10 dishes)", image:"https://i.ibb.co/vdY5qgs/nachos.png"}
     ]
 
     return (
