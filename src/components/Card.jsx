@@ -1,11 +1,9 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useState } from 'react';
 import { FaHeart, FaShoppingCart } from 'react-icons/fa';
-
 import { AuthContext } from '../Context/AuthProvider';
 import Swal from 'sweetalert2'
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import useCart from '../hooks/useCart';
 
 const Card = ({ res }) => {
@@ -39,7 +37,6 @@ const Card = ({ res }) => {
          })
          .then(res=>res.json())
          .then(data=>{
-            console.log(data.message);
             if(data){
                 refetch()
                 Swal.fire({
@@ -49,7 +46,6 @@ const Card = ({ res }) => {
                     showConfirmButton: false,
                     timer: 1500
                   });
-                
             }
             if(data.message){
                 refetch()
@@ -60,9 +56,7 @@ const Card = ({ res }) => {
                     showConfirmButton: false,
                     timer: 1500
                   });
-                
             }
-            
         })
         }else{
             Swal.fire({
@@ -79,51 +73,54 @@ const Card = ({ res }) => {
                 }
               });
         }
-        
     }
 
     return (
-
-        <div className="card w-96 bg-base-100 shadow-xl ">
-
-            
-            <div >
-            <figure><img src={res.image} alt="Shoes" className='w-full object-cover rounded-3xl
-            hover:scale-105 transition-all duration-200 md:h-72
-            ' /></figure>
-            </div>
-            <div className="card-body">
-
-                <div className='-mt-6'>  <h2 className="card-title font-bold text-2xl">{res.name}
-
-                </h2>
-                    <div className='flex justify-between mt-4 mb-2 items-center'>
-                        <div className="badge badge-secondary ">{res.category}</div>
-                        <div>
-                        <div className={`rating gap-1 text-2xl  ml-12 w-12  h-12 top-2 heartStar text-red ${isHeartFilled ? "text-rose-500": "text-red"}`}
-            onClick={handleHeartClick}
-            >
-                <FaHeart className='h-5 w-5 cursor-pointer items-center text-center ml-3'/>
-            </div>
-                            
-                            </div>
-                    </div>
-                    <p className='font-bold text-xl text-gray-600 '>{res.price} taka</p>
+        <div className="group relative overflow-hidden rounded-2xl bg-white shadow-xl transition-all duration-300 hover:shadow-2xl">
+            {/* Image Container */}
+            <div className="relative h-72 overflow-hidden">
+                <img 
+                    src={image} 
+                    alt={name}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                
+                {/* Floating Category Badge */}
+                <div className="absolute left-4 top-4">
+                    <span className="rounded-full bg-red-500 px-3 py-1 text-sm font-medium text-white shadow-lg">
+                        {res.category}
+                    </span>
                 </div>
 
+                {/* Floating Action Buttons */}
+                <div className="absolute right-4 top-4 flex flex-col gap-2">
+                    <button 
+                        onClick={handleHeartClick}
+                        className={`rounded-full bg-white/90 p-2 shadow-lg transition-all duration-300 hover:bg-red-500 hover:text-white ${isHeartFilled ? 'bg-red-500 text-white' : 'text-red-500'}`}
+                    >
+                        <FaHeart className="h-5 w-5" />
+                    </button>
+                </div>
+            </div>
 
-                <p>{res.recipe.length > 81 ? res.recipe.slice(0, 81) + '...' : res.recipe}</p>
-
-                <div className="card-actions ">
+            {/* Content Container */}
+            <div className="p-6 h-48">
+                <h3 className="mb-2 text-xl font-bold text-gray-800">{name}</h3>
+                <p className="mb-4 text-sm text-gray-600 line-clamp-2">{recipe}</p>
+                
+                <div className="flex items-center justify-between">
+                    <span className="text-2xl font-bold text-red-500">৳{price}</span>
                     <button
-                    onClick={()=>handleAddToCart(res)}
-                    className="mt-6 btn
-                      rounded-full px-8 flex text-center text-white font-bold
-                        bg-button hover:bg-button-hvr"><FaShoppingCart /> Buy Now </button>
+                        onClick={() => handleAddToCart(res)}
+                        className="flex items-center gap-2 rounded-full bg-red-500 px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:bg-red-600"
+                    >
+                        <FaShoppingCart className="h-4 w-4" />
+                        Add to Cart
+                    </button>
                 </div>
             </div>
         </div>
-
     );
 };
 
