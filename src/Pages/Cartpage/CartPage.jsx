@@ -1,19 +1,18 @@
-import React, { useContext, useState } from 'react'
-import useCart from '../../hooks/useCart'
-import { FaTrash } from 'react-icons/fa'
-import  Swal  from 'sweetalert2';
+import React, { useContext, useState } from 'react';
+import useCart from '../../hooks/useCart';
+import { FaTrash, FaShoppingCart, FaMinus, FaPlus } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 import { AuthContext } from '../../Context/AuthProvider';
 import { Link } from 'react-router-dom';
 
 const CartPage = () => {
-
-    const [cart,refetch]=useCart()
-    const {user}=useContext(AuthContext)
-  const [cartItems, setCartItems]=useState([])
-    console.log("dfsdfsdfsdafsdaf",cart);
+    const [cart, refetch] = useCart();
+    const { user } = useContext(AuthContext);
+    const [cartItems, setCartItems] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const handleIncrease = (item) => {
-    
+        setLoading(true);
         fetch(`https://sodium-cafe-mongoose.onrender.com/carts/${item?._id}`, {
             method: 'PUT',
             headers: {
@@ -21,30 +20,29 @@ const CartPage = () => {
             },
             body: JSON.stringify({ quantity: item.quantity + 1 })
         })
-        .then(res => res.json())
-        .then(data => {
-            const updateCart = cart.map((cartItem) => { // Use cart instead of cartItems
-                
-                if (cartItem.id === item.id) {
-    
-                    return {
-                        ...cartItem,
-                        quantity: cartItem.quantity + 1
-                    };
-                }
-                return cartItem;
-            });
-            setCartItems(updateCart);
-          
-            refetch(); // Make sure refetch is called after setCartItems
-        })
-        .catch(error => {
-            console.error('Error updating cart:', error);
-        });
-       
+            .then(res => res.json())
+            .then(data => {
+                const updateCart = cart.map((cartItem) => {
+                    if (cartItem.id === item.id) {
+                        return {
+                            ...cartItem,
+                            quantity: cartItem.quantity + 1
+                        };
+                    }
+                    return cartItem;
+                });
+                setCartItems(updateCart);
+                refetch();
+            })
+            .catch(error => {
+                console.error('Error updating cart:', error);
+            })
+            .finally(() => setLoading(false));
     };
 
     const handleDecrease = (item) => {
+        if (item.quantity <= 1) return;
+        setLoading(true);
         fetch(`https://sodium-cafe-mongoose.onrender.com/carts/${item?._id}`, {
             method: 'PUT',
             headers: {
@@ -52,190 +50,176 @@ const CartPage = () => {
             },
             body: JSON.stringify({ quantity: item.quantity - 1 })
         })
-        .then(res => res.json())
-        .then(data => {
-            const updateCart = cart.map((cartItem) => { // Use cart instead of cartItems
-                
-                if (cartItem.id === item.id) {
-    
-                    return {
-                        ...cartItem,
-                        quantity: cartItem.quantity - 1
-                    };
-                }
-                return cartItem;
-            });
-            setCartItems(updateCart);
-          
-            refetch(); // Make sure refetch is called after setCartItems
-        })
-        .catch(error => {
-            console.error('Error updating cart:', error);
-        });
+            .then(res => res.json())
+            .then(data => {
+                const updateCart = cart.map((cartItem) => {
+                    if (cartItem.id === item.id) {
+                        return {
+                            ...cartItem,
+                            quantity: cartItem.quantity - 1
+                        };
+                    }
+                    return cartItem;
+                });
+                setCartItems(updateCart);
+                refetch();
+            })
+            .catch(error => {
+                console.error('Error updating cart:', error);
+            })
+            .finally(() => setLoading(false));
     };
-    
 
-    const handleDelete =(item)=>{
+    const handleDelete = (item) => {
         Swal.fire({
-            title: "Confirm?",
-            text: "Delete this?",
+            title: "Remove Item?",
+            text: "Are you sure you want to remove this item from your cart?",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-          }).then((result) => {
+            confirmButtonColor: "#dc2626",
+            cancelButtonColor: "#6b7280",
+            confirmButtonText: "Yes, remove it",
+            cancelButtonText: "Cancel",
+            borderRadius: "10px"
+        }).then((result) => {
             if (result.isConfirmed) {
-              fetch(`https://sodium-cafe-mongoose.onrender.com/carts/${item?._id}`,{
-                method: 'DELETE'
-              })
-              .then(res=>res.json())
-              .then(data=>{
-                console.log(data);
-               if(data.deletedCount> 0){
-                
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted",
-                    icon: "success"
+                setLoading(true);
+                fetch(`https://sodium-cafe-mongoose.onrender.com/carts/${item?._id}`, {
+                    method: 'DELETE'
                 })
-               }
-               refetch()
-            })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Removed!",
+                                text: "Item has been removed from your cart",
+                                icon: "success"
+                            });
+                        }
+                        refetch();
+                    })
+                    .finally(() => setLoading(false));
             }
-          });
+        });
+    };
+
+    const calculatePrice = (item) => {
+        return item.price * item.quantity;
+    };
+
+    const calculateTotalPrice = cart.reduce((total, item) => {
+        return total + calculatePrice(item);
+    }, 0);
+
+    const orderTotal = calculateTotalPrice;
+    const deliveryFee = 60;
+    const tax = (orderTotal * 0.05).toFixed(2);
+    const grandTotal = (orderTotal + deliveryFee + parseFloat(tax)).toFixed(2);
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex justify-center items-center">
+                <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-red-500"></div>
+            </div>
+        );
     }
 
-   
-   
-
-
-    const calcualatePrice =(item)=>{
-       return item.price * item.quantity
+    if (cart.length === 0) {
+        return (
+            <div className="min-h-screen flex flex-col justify-center items-center gap-6 px-4">
+                <FaShoppingCart className="text-6xl text-gray-300" />
+                <h2 className="text-3xl font-bold text-gray-800 text-center">Your Cart is Empty</h2>
+                <p className="text-gray-600 text-center max-w-md">Looks like you haven't added anything to your cart yet.</p>
+                <Link to="/menu" className="bg-red-500 text-white px-8 py-3 rounded-full hover:bg-red-600 transition-colors">
+                    Browse Menu
+                </Link>
+            </div>
+        );
     }
 
-    const calculateTotalPrice = cart.reduce((total,item)=>{
-        return total+calcualatePrice(item)
-    },0)
-
-    const orderTotal = calculateTotalPrice
-
-
-  return (
-    <div className='section-container my-28'>
-         <div>
-              <p className='md:text-5xl text-center text-4xl font-bold md:leading-snug leading-snug'>Cheake Your Order Here & Confirm Your Payment</p>
-         </div>
-
-        
-         {/* table */}
-         <div className="overflow-x-auto mt-20 rounded-2xl">
-           <table className="table ">
-    {/* head */}
-          <thead className='bg-button text-white font-medium text-xl'>
-      <tr>
-        <th>#</th>
-        <th>Food</th>
-        <th>Item Name</th>
-        <th>Quantity</th>
-        <th>Price</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody className='text-xl font-bold'>
-
-        {
-          cart?.map((item,idx)=>(
-            <tr key={idx}>
-            <td>{idx+1}</td>
-            <td>
-              <div className="flex items-center gap-3">
-                <div className="avatar">
-                  <div className="mask mask-squircle w-12 h-12">
-                    <img src={item?.image} alt="Avatar Tailwind CSS Component" />
-                  </div>
+    return (
+        <div className="min-h-screen bg-gray-50 py-20">
+            <div className="container mx-auto px-4">
+                <div className="text-center mb-16">
+                    <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Your Cart</h1>
+                    <p className="text-gray-600">Review your items and proceed to checkout</p>
                 </div>
-                
-              </div>
-            </td>
-            <td>
-             {item?.name}
-             
-            
-            </td>
-            <td>
-            <button className='btn btn-xs text-xl text-center' 
-            onClick={()=>handleDecrease(item)}
-            >-</button>
-                <input
-                onChange={()=>console.log(item.quantity)}
-                type="number" value={item.quantity} className='w-10 mx-2 text-center overflow-hidden appearance-none'/>
-           
-                <button
-                 
-                className='btn btn-xs text-xl'
-                onClick={()=>handleIncrease(item)}
-                >+</button>
-                </td>
-            <td>{calcualatePrice(item).toFixed(2)} taka</td>
-            <th>
-              <button
-              onClick={()=>handleDelete(item)}
-              className="btn btn-ghost btn-xs"><FaTrash className='text-xl font-bold text-red-500'/></button>
-            </th>
-          </tr>
-          ))
-        }
- 
-     
-     
-   
-    </tbody>
-  
-    
-  </table>
+
+                <div className="grid lg:grid-cols-3 gap-8">
+                    {/* Cart Items */}
+                    <div className="lg:col-span-2">
+                        <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+                            {cart.map((item, idx) => (
+                                <div key={idx} className="flex items-center gap-4 p-4 border-b border-gray-100">
+                                    <div className="flex-shrink-0">
+                                        <img src={item?.image} alt={item?.name} className="w-20 h-20 object-cover rounded-lg" />
+                                    </div>
+                                    <div className="flex-grow">
+                                        <h3 className="font-semibold text-gray-800">{item?.name}</h3>
+                                        <div className="flex items-center gap-4 mt-2">
+                                            <div className="flex items-center gap-2">
+                                                <button
+                                                    onClick={() => handleDecrease(item)}
+                                                    className={`p-1 rounded-full ${item.quantity <= 1 ? 'text-gray-300' : 'text-gray-600 hover:bg-gray-100'}`}
+                                                    disabled={item.quantity <= 1}
+                                                >
+                                                    <FaMinus className="w-3 h-3" />
+                                                </button>
+                                                <span className="w-8 text-center font-medium">{item.quantity}</span>
+                                                <button
+                                                    onClick={() => handleIncrease(item)}
+                                                    className="p-1 rounded-full text-gray-600 hover:bg-gray-100"
+                                                >
+                                                    <FaPlus className="w-3 h-3" />
+                                                </button>
+                                            </div>
+                                            <span className="text-gray-600">৳ {calculatePrice(item).toFixed(2)}</span>
+                                        </div>
+                                    </div>
+                                    <button
+                                        onClick={() => handleDelete(item)}
+                                        className="p-2 text-gray-400 hover:text-red-500 transition-colors"
+                                    >
+                                        <FaTrash />
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Order Summary */}
+                    <div className="lg:col-span-1">
+                        <div className="bg-white rounded-xl shadow-sm p-6">
+                            <h2 className="text-xl font-bold text-gray-800 mb-6">Order Summary</h2>
+                            <div className="space-y-4">
+                                <div className="flex justify-between text-gray-600">
+                                    <span>Subtotal</span>
+                                    <span>৳ {orderTotal.toFixed(2)}</span>
+                                </div>
+                                <div className="flex justify-between text-gray-600">
+                                    <span>Delivery Fee</span>
+                                    <span>৳ {deliveryFee.toFixed(2)}</span>
+                                </div>
+                                <div className="flex justify-between text-gray-600">
+                                    <span>Tax (5%)</span>
+                                    <span>৳ {tax}</span>
+                                </div>
+                                <div className="border-t border-gray-100 pt-4">
+                                    <div className="flex justify-between font-bold text-gray-800">
+                                        <span>Total</span>
+                                        <span>৳ {grandTotal}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button className="w-full bg-red-500 text-white py-3 rounded-lg mt-6 hover:bg-red-600 transition-colors font-medium">
+                                Proceed to Checkout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    );
+};
 
-         
-
-
-        {/* customer details page */}
-        <div className='my-20'>
-         <h3 className='font-bold text-center text-3xl text-button mb-8'>Customer Details</h3>
-             
-         
-               <div className='flex flex-wrap justify-between'>
-                    
-                    <div>
-                    <p className='text-2xl font-bold mb-3 ml-6 text-center'>User Information</p>
-                    <div className=' space-y-3 border-2 md:w-[500px] text-start p-10 bg-[#f5aebd] shadow-2xl rounded-2xl'>
-                       <p className='text-xl font-medium'>Name: <span className='font-bold text-2xl ' >{user.displayName}</span></p>
-                       <p className='text-xl font-medium'>Email: <span className='font-bold text-2xl'>{user.email}</span></p>
-                      <p className='text-xl font-medium'>User_id: <span className='text-xl font-bold'>{user.uid}</span></p>
-                    </div>
-                    </div>
-                    {/* second cart */}
-                   
-                  <div>
-                  <p className='text-2xl font-bold mb-3 ml-6 text-center'>Order Summary</p>
-                  <div className=' space-y-3 h-48  border-2 text-start md:w-[500px] p-10 bg-[#f5aebd] shadow-2xl rounded-2xl'>
-                    
-                       <p className='text-xl font-medium'>Order Items: <span className='font-bold text-2xl ' >{cart.length}</span></p>
-                       <p className='text-xl font-medium'>Total Price: <span className='font-bold text-2xl'>{orderTotal.toFixed(2)} Taka</span></p>
-                   
-                    </div>
-                  </div>
-               </div>
-        </div>
-        <div className='text-center md:text-end mt-12'>
-<Link to='/process-chekout'>
-<button className='px-8 py-6 font-bold text-white text-xl rounded-2xl bg-button hover:bg-button-hvr'>Procced Cheakout</button>
-</Link>
-</div>
-
-       
-    </div>
-  )
-}
-
-export default CartPage
+export default CartPage;

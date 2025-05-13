@@ -15,6 +15,7 @@ import ManageItems from "../Pages/Dashboard/Admin/MannageItems";
 import UpdateMenu from "../Pages/Dashboard/Admin/UpdateMenu";
 import Payment from "../Pages/Payment/Payment";
 import Order from "../Pages/Order";
+import Contact from "../Pages/Contact/Contact";
 
 
  export const router = createBrowserRouter([
@@ -29,6 +30,10 @@ import Order from "../Pages/Order";
         {
             path:"/menu",
             element:<Menu/>
+        },
+        {
+            path:"/contact",
+            element:<Contact/>
         },
         {
             path:"/order",

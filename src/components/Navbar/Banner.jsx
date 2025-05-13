@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BiArrowToRight } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
 
 // Import your background images
 const backgroundImages = [
@@ -71,7 +72,7 @@ const Banner = () => {
                     <p className='text-lg md:text-xl mb-8 text-gray-200'>
                         Experience culinary magic with our carefully crafted dishes that tantalize your taste buds.
                     </p>
-                    
+                    <Link to='/menu'>
                     <motion.button 
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -80,6 +81,8 @@ const Banner = () => {
                     >
                         Order Now <BiArrowToRight className='text-2xl'/>
                     </motion.button>
+                    </Link>
+                    
                 </div>
 
                 {/* Slide Indicators */}
