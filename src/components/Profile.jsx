@@ -35,7 +35,7 @@ const Profile = () => {
       <li><Link to='/update-profile'>Profile</Link></li>
       <li><Link to='/order'>Orders</Link></li>
 
-         <li><Link to='/dashboard'>Dashboard</Link></li>
+         <li><Link to='/dashboard/users'>Dashboard</Link></li>
    
     
   

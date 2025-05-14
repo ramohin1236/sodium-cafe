@@ -16,6 +16,7 @@ import UpdateMenu from "../Pages/Dashboard/Admin/UpdateMenu";
 import Payment from "../Pages/Payment/Payment";
 import Order from "../Pages/Order";
 import Contact from "../Pages/Contact/Contact";
+import OrderTracking from "../Pages/Dashboard/Admin/OrderTracking";
 
 
  export const router = createBrowserRouter([
@@ -75,6 +76,10 @@ import Contact from "../Pages/Contact/Contact";
           {
             path:'add-menu',
             element: <AddMenu/>
+          },
+          {
+            path:'order-tracking',
+            element: <OrderTracking/>
           },
           {
             path:'manage-item',

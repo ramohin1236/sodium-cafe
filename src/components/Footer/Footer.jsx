@@ -25,7 +25,7 @@ const Footer = () => {
                     <div className="space-y-6">
                         <div className="flex items-center gap-2">
                             <FaUtensils className="text-red-500 text-2xl" />
-                            <h2 className="text-3xl font-bold">Sodium Cafe</h2>
+                            <h2 className="text-3xl font-bold">Foodie</h2>
                         </div>
                         <p className="text-gray-400 leading-relaxed">
                             Experience the perfect blend of taste and tradition. 
@@ -109,7 +109,7 @@ const Footer = () => {
             <div className="border-t border-gray-800">
                 <div className="container mx-auto px-4 py-6">
                     <p className="text-center text-gray-500">
-                        © {new Date().getFullYear()} Sodium Cafe. All rights reserved.
+                        © {new Date().getFullYear()} Foodie. All rights reserved.
                     </p>
                 </div>
             </div>

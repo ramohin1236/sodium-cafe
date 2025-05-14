@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 
 // Import your background images
 const backgroundImages = [
-    '/public/bg.jpg',
-    '/public/bg-2.jpg',
-    '/public/bg-3.jpg',
-    '/public/bg-4.jpg'
+    '/bg.jpg',
+    '/bg-2.jpg',
+    '/bg-3.jpg',
+    '/bg-4.jpg'
 ];
 
 const Banner = () => {

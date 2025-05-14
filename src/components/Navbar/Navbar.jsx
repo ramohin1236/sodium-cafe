@@ -30,7 +30,7 @@ const Navbar = () => {
                     to='/' 
                     className="text-2xl font-bold text-[#FF6B6B] hover:text-[#4ECDC4] transition-colors"
                 >
-                    Sodium Cafe
+                   Foodie
                 </Link>
 
                 {/* Mobile Menu Toggle */}

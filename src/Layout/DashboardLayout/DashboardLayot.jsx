@@ -25,7 +25,7 @@ const sharredLinks =(
         
     </li>
        <li>
-        <Link to='/menu'
+        <Link to='/dashboard/order-tracking'
         className='text-xl font-semibold mb-4 hover:text-button'
         >
          <FaLocationArrow/> Orders Tracking
@@ -93,10 +93,10 @@ const DashboardLayot = () => {
            
                    <div className=' flex text-center items-center '>
                    <li>
-                       <Link 
+                       <Link to="/" 
                        className='text-3xl font-bold text-center'
                        >
-                           Sodium Cafe
+                           Foodie
                            
                        </Link>
                        
@@ -108,7 +108,7 @@ const DashboardLayot = () => {
                  {/* <li><Link to='/dashboard' className='text-xl mt-8 text-black font-semibold hover:text-button'><MdDashboardCustomize /> Dashboard</Link></li> */}
                  
                  <li><Link to='/dashboard/users' className='text-xl  text-black font-semibold hover:text-button mt-4'><FaUsers /> All Users</Link></li>
-                 <li><Link to='/dashboard/users' className='text-xl  text-black font-semibold hover:text-button mt-4'><FaShoppingBag /> Manage Bookings</Link></li>
+                 {/* <li><Link to='/dashboard/users' className='text-xl  text-black font-semibold hover:text-button mt-4'><FaShoppingBag /> Manage Bookings</Link></li> */}
 
 
                  <li><Link to='/dashboard/add-menu' className='text-xl  text-black font-semibold hover:text-button mt-4'><FaPlus /> Add Menu</Link></li>

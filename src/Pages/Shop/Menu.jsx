@@ -3,6 +3,7 @@ import Carousol from '../../components/Carousol';
 import Card from '../../components/Card';
 import { FaUtensils, FaSort } from 'react-icons/fa';
 import Banner from '../../components/Navbar/Banner';
+import MenuBanner from '../../components/MenuBanner/MenuBanner';
 
 const Menu = () => {
     const [menu, setMenu] = useState([]);
@@ -81,7 +82,7 @@ const Menu = () => {
           
             <div className="relative">
                 <div className="">
-                   <Banner/>
+                   <MenuBanner/>
                 </div>
               
             </div>
@@ -118,7 +119,7 @@ const Menu = () => {
                         </div>
                     </div>
                     
-                    <div className="flex flex-wrap gap-3 justify-center">
+                    <div id="menus" className="flex flex-wrap gap-3 justify-center">
                         {categories.map((category) => (
                             <button
                                 key={category}

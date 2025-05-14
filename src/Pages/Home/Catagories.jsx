@@ -9,7 +9,7 @@ const Catagories = () => {
     ];
 
     return (
-        <div className='container py-16 px-4'>
+        <div className='container mx-auto py-16 px-4'>
             <div className='text-center mb-12'>
                 <p className='text-red-500 font-medium mb-2'>What We Offer</p>
                 <h3 className='text-4xl font-bold text-gray-800 relative inline-block pb-4 after:content-[""] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-2/3 after:h-1 after:bg-red-500'>
