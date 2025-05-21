@@ -34,31 +34,30 @@ const Users = () => {
         })
     }
 
-  return (
-    <div>
-       <div className='flex items-center justify-between mx-4 my-4'>
-           <h5>All Users</h5>
-           <h5>Total Users: {users.length}</h5>
+   return (
+    <div className='w-full md:w-[1200px] px-2 md:px-4'>
+       <div className='flex items-center justify-between w-full mx-2 md:mx-4 my-4'>
+           <h5 className='text-xl md:text-2xl'>All Users</h5>
+           <h5 className='text-xl md:text-2xl'>Total Users: {users.length}</h5>
        </div>
        {/* table */}
-       <div className="overflow-x-auto">
-  <table className="table table-zebra md:w-[1000px]" >
+       <div className="overflow-x-auto w-full">
+  <table className="table table-zebra w-full" >
     {/* head */}
-    <thead className='bg-button text-white font-bold text-xl rounded-lg'>
+    <thead className='bg-button text-white font-bold text-lg rounded-lg'>
       <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Role</th>
-        <th>Action</th>
+        <th className='min-w-[50px]'>#</th>
+        <th className='min-w-[150px]'>Name</th>
+        <th className='min-w-[200px]'>Email</th>
+        <th className='min-w-[100px]'>Role</th>
+        <th className='min-w-[120px]'>Action</th>
       </tr>
     </thead>
     <tbody>
       {/* row 1 */}
-
       {
         users.map((usr,idx)=>(
-            <tr key={idx} className='text-xl'>
+            <tr key={idx} className='text-lg'>
             <th>{idx+1}</th>
             <td>{usr.name}</td>
             <td>{usr.email}</td>
@@ -67,7 +66,7 @@ const Users = () => {
             onClick={()=>handleMakeAdmin(usr)}
             className='btn bg-button btn-sm'><FaUser/></button>
             </>
-           
+            
             }</td>
             <td><button
             onClick={()=>handleDeleteUser(usr)}
@@ -75,9 +74,6 @@ const Users = () => {
           </tr>
         ))
       }
-     
-     
-   
     </tbody>
   </table>
 </div>

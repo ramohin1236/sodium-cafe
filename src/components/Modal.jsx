@@ -105,9 +105,7 @@ const Modal = () => {
         <div className="form-control mt-6">
           <input type="Submit" value={"Login"} className="btn bg-button hover:bg-button-hvr font-bold text-white"/>
         </div>
-        <p className="text-center my-2">Don't have an account? <Link 
-        to="/signup"
-        className="font-bold underline text-button">Signup Now</Link ></p>
+      
           <button 
             onClick={()=>document.getElementById('my_modal_5').close()}
           htmlFor='my_modal_5' className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
@@ -119,12 +117,7 @@ const Modal = () => {
                className="btn btn-circle  hover:bg-button-hvr text-black hover:text-white">
                <FaGoogle className="font-bold text-xl hover:text-white"/>
 </button>
-<button className="btn btn-circle  hover:bg-button-hvr text-black hover:text-white ml-2 mr-2">
-               <FaFacebook className="font-bold text-xl hover:text-white"/>
-</button>
-<button className="btn btn-circle  hover:bg-button-hvr text-black hover:text-white ml-2">
-               <FaGithub className="font-bold text-xl hover:text-white"/>
-</button>
+
                </div>
           </div>
         </div>

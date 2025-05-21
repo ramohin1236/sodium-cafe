@@ -75,8 +75,8 @@ const Card = ({ res }) => {
         }
     }
 
-    return (
-        <div className="group relative overflow-hidden rounded-2xl bg-white shadow-xl transition-all duration-300 hover:shadow-2xl">
+ return (
+        <div className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]">
             {/* Image Container */}
             <div className="relative h-72 overflow-hidden">
                 <img 
@@ -88,7 +88,7 @@ const Card = ({ res }) => {
                 
                 {/* Floating Category Badge */}
                 <div className="absolute left-4 top-4">
-                    <span className="rounded-full bg-red-500 px-3 py-1 text-sm font-medium text-white shadow-lg">
+                    <span className="rounded-full bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-lg">
                         {res.category}
                     </span>
                 </div>
@@ -99,27 +99,40 @@ const Card = ({ res }) => {
                         onClick={handleHeartClick}
                         className={`rounded-full bg-white/90 p-2 shadow-lg transition-all duration-300 hover:bg-red-500 hover:text-white ${isHeartFilled ? 'bg-red-500 text-white' : 'text-red-500'}`}
                     >
-                        <FaHeart className="h-5 w-5" />
+                        <FaHeart className="w-5 h-5" />
+                    </button>
+                    <button 
+                        onClick={() => handleAddToCart(res)}
+                        className="rounded-full bg-white/90 p-2 shadow-lg transition-all duration-300 hover:bg-red-500 hover:text-white text-red-500"
+                    >
+                        <FaShoppingCart className="w-5 h-5" />
                     </button>
                 </div>
             </div>
 
-            {/* Content Container */}
-            <div className="p-6 h-48">
-                <h3 className="mb-2 text-xl font-bold text-gray-800">{name}</h3>
-                <p className="mb-4 text-sm text-gray-600 line-clamp-2">{recipe}</p>
-                
+            {/* Content */}
+            <div className="p-6">
+                <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-red-500 transition-colors duration-300">
+                    {name}
+                </h3>
+                <p className="text-gray-600 mb-4 line-clamp-2">
+                    {recipe}
+                </p>
                 <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-red-500">৳{price}</span>
-                    <button
+                    <span className="text-2xl font-bold text-red-500">
+                        ${price}
+                    </span>
+                    <button 
                         onClick={() => handleAddToCart(res)}
-                        className="flex items-center gap-2 rounded-full bg-red-500 px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:bg-red-600"
+                        className="flex items-center gap-2 px-4 py-2 rounded-lg bg-red-500 text-white font-medium hover:bg-red-600 transition-all duration-300"
                     >
-                        <FaShoppingCart className="h-4 w-4" />
+                        <FaShoppingCart className="w-5 h-5" />
                         Add to Cart
                     </button>
                 </div>
             </div>
+
+           
         </div>
     );
 };

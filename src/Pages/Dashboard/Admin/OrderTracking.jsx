@@ -97,7 +97,7 @@ const OrderTracking = () => {
                                     </p>
                                     <div className="mt-4">
                                         <Link 
-                                            to={`/order-details/${order._id}`} 
+                                            to='/'
                                             className="w-full block text-center bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
                                         >
                                             View Details
